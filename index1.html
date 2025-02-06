@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transport Service</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            padding: 75px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        input, select, button {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+        }
+        
+    </style>
+</head>
+<body>
+    <img src="./images.png" alt="">
+    <div class="container">
+        <h2>Triveni Transport Service</h2>
+        <label for="employeeName">Employee Name:</label>
+        <select id="employeeName">
+            <option value="">Select Employee Name</option>
+            <option value="">Neeraj Shrivastav</option>
+            <option value="">Digvijay Singh</option>
+            <option value="">Moh Galib</option>
+            <option value="">Vivak Shrivastav</option>
+            <option value="">Sonpal Saini</option>
+        </select>
+
+
+        
+        
+        <label for="startLocation">Start Location:</label>
+        <select id="startLocation">
+            <option value="">Triveni Sugar Mill</option>
+        </select>
+        
+        <label for="endLocation">End Location:</label>
+        <select id="endLocation">
+            <option value="">Select end location</option>
+            <option value="Office">Khurja</option>
+            <option value="Warehouse">Bulandshahr</option>
+            <option value="Client Site">Noida</option>
+            <option value="Airport">Meerut</option>
+        </select>
+        
+        <label for="carNumber">Car Number:</label>
+
+        <select id="Van Number">
+            <option value="">Select Van Number</option>
+            <option value="">UP15CD 5898</option>
+            <option value="">UP14XX XXX</option>
+            <option value="">UP13XX XXX</option>
+            <option value="">UP11XX XXX</option>
+         </select>
+        
+        <button onclick="startRide()">Start Ride</button>
+        <button onclick="endRide()">End Ride</button>
+        
+        <h3 id="rideStatus">Ride not started</h3>
+        <p id="distance">Distance: 0.00 km</p>
+        <p id="startTime">Start Time: 00 00</p>
+        <p id="endTime">End Time: 00 00</p>
+    </div>
+
+    <script>
+        let rideStarted = false;
+        function startRide() {
+            const employee = document.getElementById("employeeName").value;
+            if (!employee) {
+                alert("Please enter employee name.");
+                return;
+            }
+            rideStarted = true;
+            document.getElementById("rideStatus").innerText = "Ride Started...";
+            document.getElementById("startTime").innerText = `Start Time: ${new Date().toLocaleTimeString()}`;
+        }
+
+        function endRide() {
+            if (!rideStarted) {
+                alert("Start the ride first.");
+                return;
+            }
+            const start = document.getElementById("startLocation").value;
+            const end = document.getElementById("endLocation").value;
+            if (!start || !end) {
+                alert("Enter both start and end locations.");
+                return;
+            }
+            
+            const distance = Math.floor(Math.random() * 50) + 1; // Random distance simulation
+            document.getElementById("rideStatus").innerText = "Ride Ended";
+            document.getElementById("distance").innerText = `Distance: ${distance} km`;
+            document.getElementById("endTime").innerText = `End Time: ${new Date().toLocaleTimeString()}`;
+        }
+    </script>
+</body>
+</html>
